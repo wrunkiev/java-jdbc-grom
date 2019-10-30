@@ -1,7 +1,5 @@
 package lesson2;
 
-import lesson1.Order;
-
 import java.sql.*;
 
 public class Solution {
@@ -14,7 +12,7 @@ public class Solution {
     public static void main(String[] args) {
 
         try(Connection connection = DriverManager.getConnection(DB_URL, USER, PASS); Statement statement = connection.createStatement()) {
-           
+
             try {
                 Class.forName(JDBC_DRIVER);
             } catch (ClassNotFoundException e) {
