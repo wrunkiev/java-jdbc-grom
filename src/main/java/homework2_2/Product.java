@@ -1,4 +1,4 @@
-package homework2;
+package homework2_2;
 
 public class Product {
     private long id;
@@ -29,13 +29,12 @@ public class Product {
         return price;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                '}';
+        return id + "," + name + "," + description + "," + price;
     }
 }

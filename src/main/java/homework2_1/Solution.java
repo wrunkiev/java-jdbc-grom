@@ -1,7 +1,6 @@
-package homework2;
+package homework2_1;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Solution {
 
