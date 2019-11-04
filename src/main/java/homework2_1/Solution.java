@@ -46,12 +46,13 @@ public class Solution {
                     list.add(product);
                 }
             }
+            return list;
 
         }catch (SQLException e){
             System.err.println("Something went wrong");
             e.printStackTrace();
         }
-        return list;
+        return null;
     }
 
     private static ArrayList<Product> getProductsByPrice(){
@@ -70,12 +71,13 @@ public class Solution {
                     list.add(product);
                 }
             }
+            return list;
 
         }catch (SQLException e){
             System.err.println("Something went wrong");
             e.printStackTrace();
         }
-        return list;
+        return null;
     }
 
     private static ArrayList<Product> getProductsByDescription(){
@@ -96,11 +98,12 @@ public class Solution {
                     }
                 }
             }
+            return list;
 
         }catch (SQLException e){
             System.err.println("Something went wrong");
             e.printStackTrace();
         }
-        return list;
+        return null;
     }
 }
