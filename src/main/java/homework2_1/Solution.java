@@ -60,15 +60,17 @@ public class Solution {
 
         try(Connection connection = DriverManager.getConnection(DB_URL, USER, PASS); Statement statement = connection.createStatement()) {
 
-            try (ResultSet resultSet = statement.executeQuery("SELECT * FROM PRODUCTS WHERE PRICE <= 100")) {
+            try (ResultSet resultSet = statement.executeQuery("SELECT * FROM PRODUCTS")) {
                 while (resultSet.next()) {
                     long id = resultSet.getLong(1);
                     String name = resultSet.getString(2);
                     String description = resultSet.getString(3);
                     int price = resultSet.getInt(4);
 
-                    Product product = new Product(id, name,description, price);
-                    list.add(product);
+                    if(price <= 100){
+                        Product product = new Product(id, name,description, price);
+                        list.add(product);
+                    }
                 }
             }
             return list;
