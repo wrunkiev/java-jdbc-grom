@@ -16,6 +16,7 @@ public class Solution {
     private int count = 1000;
 
     public long testSavePerformance(){
+        // Скорость выполнения 141592
         long delta = 0;
         try(Connection connection = getConnection()) {
             Date dtStart = new Date();
@@ -40,6 +41,7 @@ public class Solution {
     }
 
     public long testDeleteByIdPerformance(){
+        // Скорость выполнения 136861
         long delta = 0;
         try(Connection connection = getConnection()) {
             Date dtStart = new Date();
@@ -62,6 +64,7 @@ public class Solution {
     }
 
     public long testDeletePerformance(){
+        // Скорость выполнения 429
         long delta = 0;
         String sqlString = "DELETE FROM TEST_SPEED WHERE ID IN (";
         sqlString += addString(count);
@@ -83,6 +86,7 @@ public class Solution {
     }
 
     public long testSelectByIdPerformance(){
+        // Скорость выполнения 136678
         long delta = 0;
         try(Connection connection = getConnection()) {
             Date dtStart = new Date();
@@ -105,6 +109,7 @@ public class Solution {
     }
 
     public long testSelectPerformance(){
+        // Скорость выполнения 457
         long delta = 0;
         String sqlString = "SELECT * FROM TEST_SPEED WHERE ID IN (";
         sqlString += addString(count);
