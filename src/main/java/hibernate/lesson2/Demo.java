@@ -4,7 +4,7 @@ public class Demo {
     public static void main(String[] args) throws Exception{
         Product product = new Product();
        // product.setId((long)1);
-        product.setName("product1");
+        product.setName("product");
         product.setDescription("grey & blue");
         product.setPrice(70);
 
