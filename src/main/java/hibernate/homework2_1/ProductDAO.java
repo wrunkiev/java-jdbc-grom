@@ -6,8 +6,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ProductDAO {
@@ -42,13 +40,13 @@ public class ProductDAO {
     }
 
     //поиск продуктов по имени
-    public List<Product> findByName(String name)throws Exception{
+    public List findByName(String name)throws Exception{
         if(name == null || name.isEmpty() || name.trim().isEmpty()){
             throw new Exception("name can't be null or empty");
         }
         Session session = null;
         Transaction tr = null;
-        List<Product> products;
+        List products;
         try{
             session = createSessionFactory().openSession();
             tr = session.getTransaction();
@@ -73,14 +71,14 @@ public class ProductDAO {
     }
 
     //поиск продуктов, которые в своем имени содержать слово name
-    public List<Product> findByContainedName(String name)throws Exception{
+    public List findByContainedName(String name)throws Exception{
         if(name == null || name.isEmpty() || name.trim().isEmpty()){
             throw new Exception("name can't be null or empty");
         }
 
         Session session = null;
         Transaction tr = null;
-        List<Product> products;
+        List products;
         try{
             session = createSessionFactory().openSession();
             tr = session.getTransaction();
@@ -104,13 +102,13 @@ public class ProductDAO {
     }
 
     //поиск продуктов по вилке цен price+-delta включительно
-    public List<Product> findByPrice(int price, int delta){
+    public List findByPrice(int price, int delta){
         int resultMin = price - delta;
         int resultPlus = price + delta;
 
         Session session = null;
         Transaction tr = null;
-        List<Product> products;
+        List products;
         try{
             session = createSessionFactory().openSession();
             tr = session.getTransaction();
@@ -134,14 +132,14 @@ public class ProductDAO {
     }
 
     //поиск продуктов по имени, результат отсортирован по алфавитному порядку колонки name
-    public List<Product> findByNameSortedAsc(String name)throws Exception{
+    public List findByNameSortedAsc(String name)throws Exception{
         if(name == null || name.isEmpty() || name.trim().isEmpty()){
             throw new Exception("name can't be null or empty");
         }
 
         Session session = null;
         Transaction tr = null;
-        List<Product> products;
+        List products;
         try{
             session = createSessionFactory().openSession();
             tr = session.getTransaction();
@@ -165,14 +163,14 @@ public class ProductDAO {
     }
 
     //поиск продуктов по имени, результат отсортирован начиная с конца алфавита колонки name
-    public List<Product> findByNameSortedDesc(String name)throws Exception{
+    public List findByNameSortedDesc(String name)throws Exception{
         if(name == null || name.isEmpty() || name.trim().isEmpty()){
             throw new Exception("name can't be null or empty");
         }
 
         Session session = null;
         Transaction tr = null;
-        List<Product> products;
+        List products;
         try{
             session = createSessionFactory().openSession();
             tr = session.getTransaction();
@@ -196,13 +194,13 @@ public class ProductDAO {
     }
 
     //поиск продуктов по вилке цен price+-delta включительно, результат отсортирован по убыванию цен
-    public List<Product> findByPriceSortedDesc(int price, int delta){
+    public List findByPriceSortedDesc(int price, int delta){
         int resultMin = price - delta;
         int resultPlus = price + delta;
 
         Session session = null;
         Transaction tr = null;
-        List<Product> products;
+        List products;
         try{
             session = createSessionFactory().openSession();
             tr = session.getTransaction();
@@ -226,7 +224,7 @@ public class ProductDAO {
         }
     }
 
-    public static SessionFactory createSessionFactory(){
+    private static SessionFactory createSessionFactory(){
         //singleton pattern
         if(sessionFactory == null) {
             sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();

@@ -10,7 +10,7 @@
         <property name="hibernate.connection.password">2210Dracon1983</property>
 
 
-        <mapping class="hibernate.homework2_1.Product"></mapping>
+        <mapping class="hibernate.homework2_2.Product"></mapping>
 
 
     </session-factory>
