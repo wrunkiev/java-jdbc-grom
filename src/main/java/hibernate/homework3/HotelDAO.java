@@ -1,6 +1,5 @@
 package hibernate.homework3;
 
-import hibernate.lesson2.Product;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
