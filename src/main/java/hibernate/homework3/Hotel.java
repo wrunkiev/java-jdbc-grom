@@ -1,7 +1,7 @@
 package hibernate.homework3;
 
 import javax.persistence.*;
-import java.io.Serializable;
+
 
 @Entity
 @Table(name = "HOTELS")
@@ -23,8 +23,8 @@ public class Hotel {
     @Column(name = "HOTEL_STREET")
     private String street;
 
-    //@OneToOne(mappedBy = "HOTELS")
-    //private Room room;
+    @OneToOne(mappedBy = "hotel", cascade=CascadeType.ALL)
+    private Room room;
 
     public Hotel() {
     }
@@ -49,6 +49,10 @@ public class Hotel {
         this.street = street;
     }
 
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
     public long getId() {
         return id;
     }
@@ -67,6 +71,10 @@ public class Hotel {
 
     public String getStreet() {
         return street;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 
     @Override

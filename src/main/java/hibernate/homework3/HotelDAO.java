@@ -12,9 +12,9 @@ public class HotelDAO {
     public Hotel save(Hotel hotel)throws Exception{
         checkHotelNull(hotel);
 
-        if(hotel.equals(getHotelFromDB(hotel.getId()))){
-            throw new Exception("Hotel" + hotel.getId() + " is exist in DB already");
-        }
+        //if(hotel.equals(getHotelFromDB(hotel.getId()))){
+        //    throw new Exception("Hotel" + hotel.getId() + " is exist in DB already");
+        //}
 
         Session session = null;
         Transaction tr = null;

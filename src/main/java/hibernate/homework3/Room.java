@@ -26,7 +26,7 @@ public class Room {
     private Date dateAvailableFrom;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ROOM_HOTEL_ID", referencedColumnName = "ID")
+    @PrimaryKeyJoinColumn
     private Hotel hotel;
 
     public Room() {
