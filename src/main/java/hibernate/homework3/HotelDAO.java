@@ -12,9 +12,9 @@ public class HotelDAO {
     public Hotel save(Hotel hotel)throws Exception{
         checkHotelNull(hotel);
 
-        //if(hotel.equals(getHotelFromDB(hotel.getId()))){
-        //    throw new Exception("Hotel" + hotel.getId() + " is exist in DB already");
-        //}
+        if(hotel.equals(getHotelFromDB(hotel.getId()))){
+            throw new Exception("Hotel " + hotel.getId() + " is exist in DB already");
+        }
 
         Session session = null;
         Transaction tr = null;
@@ -42,16 +42,68 @@ public class HotelDAO {
         return hotel;
     }
 
-    public Hotel delete(long id){
-        return null;
+    public void delete(long id)throws Exception{
+        Hotel hotel = getHotelFromDB(id);
+
+        Session session = null;
+        Transaction tr = null;
+        try{
+            session = createSessionFactory().openSession();
+            tr = session.getTransaction();
+            tr.begin();
+
+            session.delete(hotel);
+
+            tr.commit();
+            System.out.println("Delete hotel " + hotel.getId() + " is done");
+        }catch (HibernateException e){
+            System.err.println("Delete hotel " + hotel.getId() + " is failed");
+            System.err.println(e.getMessage());
+            if(tr != null) {
+                tr.rollback();
+            }
+        }finally {
+            if(session != null){
+                session.close();
+            }
+        }
     }
 
-    public Hotel update(Hotel hotel){
-        return null;
+    public Hotel update(Hotel hotel)throws Exception{
+        checkHotelNull(hotel);
+
+        if(!hotel.equals(getHotelFromDB(hotel.getId()))){
+            throw new Exception("Hotel " + hotel.getId() + " is not exist in DB");
+        }
+
+        Session session = null;
+        Transaction tr = null;
+        try{
+            session = createSessionFactory().openSession();
+            tr = session.getTransaction();
+            tr.begin();
+
+            session.update(hotel);
+
+            tr.commit();
+            System.out.println("Update hotel " + hotel.getId() + " is done");
+        }catch (HibernateException e){
+            System.err.println("Update hotel " + hotel.getId() + " is failed");
+            System.err.println(e.getMessage());
+            if(tr != null) {
+                tr.rollback();
+            }
+            return null;
+        }finally {
+            if(session != null){
+                session.close();
+            }
+        }
+        return hotel;
     }
 
     public Hotel findById(long id){
-        return null;
+        return getHotelFromDB(id);
     }
 
     private static SessionFactory createSessionFactory(){
@@ -68,7 +120,7 @@ public class HotelDAO {
         }
     }
 
-    private static Hotel getHotelFromDB(long id)throws Exception{
+    private static Hotel getHotelFromDB(long id){
         Hotel h = null;
 
         Session session = null;
@@ -95,6 +147,4 @@ public class HotelDAO {
         }
         return h;
     }
-
-
 }

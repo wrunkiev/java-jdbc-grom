@@ -1,6 +1,9 @@
 package hibernate.homework3;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -8,7 +11,8 @@ import javax.persistence.*;
 public class Hotel {
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "X_SEQ", sequenceName = "HOTEL_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "X_SEQ")
     private long id;
 
     @Column(name = "HOTEL_NAME")
@@ -23,14 +27,10 @@ public class Hotel {
     @Column(name = "HOTEL_STREET")
     private String street;
 
-    @OneToOne(mappedBy = "hotel", cascade=CascadeType.ALL)
-    private Room room;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "hotel")
+    private List<Room> room;
 
     public Hotel() {
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setName(String name) {
@@ -49,7 +49,7 @@ public class Hotel {
         this.street = street;
     }
 
-    public void setRoom(Room room) {
+    public void setRoom(List<Room> room) {
         this.room = room;
     }
 
@@ -73,7 +73,7 @@ public class Hotel {
         return street;
     }
 
-    public Room getRoom() {
+    public List<Room> getRoom() {
         return room;
     }
 

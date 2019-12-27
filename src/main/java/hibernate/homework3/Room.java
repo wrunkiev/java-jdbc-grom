@@ -3,10 +3,13 @@ package hibernate.homework3;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "ROOMS")
 public class Room {
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "PR_SEQ", sequenceName = "ROOM_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PR_SEQ")
     private long id;
 
     @Column(name = "ROOM_NUMBER_OF_GUESTS")
@@ -25,15 +28,11 @@ public class Room {
     @Temporal(value=TemporalType.DATE)
     private Date dateAvailableFrom;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @ManyToOne
+    @JoinColumn(name = "ROOM_HOTEL_ID", nullable = false)
     private Hotel hotel;
 
     public Room() {
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public void setNumberOfGuests(int numberOfGuests) {
