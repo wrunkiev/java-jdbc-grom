@@ -13,6 +13,14 @@ public class OrderDAO {
     public Order save(Order order)throws Exception{
         checkOrderNull(order);
 
+        if(order.getUser() == null){
+            throw new Exception();
+        }
+
+        if(order.getRoom() == null){
+            throw new Exception();
+        }
+
         Session session = null;
         Transaction tr = null;
         try{
