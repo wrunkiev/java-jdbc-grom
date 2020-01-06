@@ -9,7 +9,9 @@
         <property name="hibernate.connection.username">main</property>
         <property name="hibernate.connection.password">2210Dracon1983</property>
 
-        <mapping class="hibernate.homework3.Hotel"></mapping>
-        <mapping class="hibernate.homework3.Room"></mapping>
+        <mapping class="hibernate.homework4.model.Hotel"></mapping>
+        <mapping class="hibernate.homework4.model.Room"></mapping>
+        <mapping class="hibernate.homework4.model.Order"></mapping>
+        <mapping class="hibernate.homework4.model.User"></mapping>
     </session-factory>
 </hibernate-configuration>
