@@ -12,13 +12,13 @@ public class Filter {
     private double moneyPaid;
     private Integer numberOfGuests;
     private double price;
-    private boolean breakfastIncluded;
-    private boolean petsAllowed;
+    private char breakfastIncluded;
+    private char petsAllowed;
     private Date dateAvailableFrom;
     private String userName;
     private UserType userType;
 
-    public Filter(String name, String country, String city, String street, Date dateFrom, Date dateTo, double moneyPaid, Integer numberOfGuests, double price, boolean breakfastIncluded, boolean petsAllowed, Date dateAvailableFrom, String userName, UserType userType) {
+    public Filter(String name, String country, String city, String street, Date dateFrom, Date dateTo, double moneyPaid, Integer numberOfGuests, double price, char breakfastIncluded, char petsAllowed, Date dateAvailableFrom, String userName, UserType userType) {
         this.name = name;
         this.country = country;
         this.city = city;
@@ -71,11 +71,11 @@ public class Filter {
         return price;
     }
 
-    public boolean isBreakfastIncluded() {
+    public char getBreakfastIncluded() {
         return breakfastIncluded;
     }
 
-    public boolean isPetsAllowed() {
+    public char getPetsAllowed() {
         return petsAllowed;
     }
 

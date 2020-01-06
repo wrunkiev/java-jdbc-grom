@@ -1,25 +1,23 @@
 package hibernate.homework4.DAO;
 
+import hibernate.homework4.model.Hotel;
 import hibernate.homework4.model.Order;
+import hibernate.homework4.model.Room;
+import hibernate.homework4.model.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.NativeQuery;
+
+import javax.persistence.NoResultException;
 
 public class OrderDAO {
     private static SessionFactory sessionFactory;
 
     public Order save(Order order)throws Exception{
         checkOrderNull(order);
-
-        if(order.getUser() == null){
-            throw new Exception();
-        }
-
-        if(order.getRoom() == null){
-            throw new Exception();
-        }
 
         Session session = null;
         Transaction tr = null;
@@ -122,6 +120,74 @@ public class OrderDAO {
             return order;
         }catch (HibernateException e){
             System.err.println("Exception in method OrderDAO.findById. Order with ID: " + id + " is not defined in DB.");
+            System.err.println(e.getMessage());
+            if(tr != null) {
+                tr.rollback();
+            }
+            return null;
+        }finally {
+            if(session != null){
+                session.close();
+            }
+        }
+    }
+
+    private User getUser(Order order){
+        Session session = null;
+        Transaction tr = null;
+        User u;
+        try{
+            session = createSessionFactory().openSession();
+            tr = session.getTransaction();
+            tr.begin();
+
+            String sql = "SELECT * FROM USERS WHERE ID = ?";
+            NativeQuery query = session.createNativeQuery(sql, User.class);
+            query.setParameter(1, order.getUser().getId());
+            u = (User)query.getSingleResult();
+            tr.commit();
+            return u;
+        }catch (NoResultException ex){
+            System.err.println(ex.getMessage());
+            if(tr != null) {
+                tr.rollback();
+            }
+            return null;
+        }catch (HibernateException e){
+            System.err.println(e.getMessage());
+            if(tr != null) {
+                tr.rollback();
+            }
+            return null;
+        }finally {
+            if(session != null){
+                session.close();
+            }
+        }
+    }
+
+    private Room getRoom(Order order){
+        Session session = null;
+        Transaction tr = null;
+        Room r;
+        try{
+            session = createSessionFactory().openSession();
+            tr = session.getTransaction();
+            tr.begin();
+
+            String sql = "SELECT * FROM ROOMS WHERE ID = ?";
+            NativeQuery query = session.createNativeQuery(sql, Room.class);
+            query.setParameter(1, order.getRoom().getId());
+            r = (Room)query.getSingleResult();
+            tr.commit();
+            return r;
+        }catch (NoResultException ex){
+            System.err.println(ex.getMessage());
+            if(tr != null) {
+                tr.rollback();
+            }
+            return null;
+        }catch (HibernateException e){
             System.err.println(e.getMessage());
             if(tr != null) {
                 tr.rollback();

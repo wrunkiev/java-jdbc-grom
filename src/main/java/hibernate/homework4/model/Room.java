@@ -19,10 +19,10 @@ public class Room {
     private double price;
 
     @Column(name = "ROOM_BREAKFAST_INCLUDED")
-    private boolean breakfastIncluded;
+    private char breakfastIncluded;
 
     @Column(name = "ROOM_PETS_ALLOWED")
-    private boolean petsAllowed;
+    private char petsAllowed;
 
     @Column(name = "ROOM_DATE_AVAILABLE_FROM")
     @Temporal(value = TemporalType.DATE)
@@ -48,11 +48,11 @@ public class Room {
         this.price = price;
     }
 
-    public void setBreakfastIncluded(boolean breakfastIncluded) {
+    public void setBreakfastIncluded(char breakfastIncluded) {
         this.breakfastIncluded = breakfastIncluded;
     }
 
-    public void setPetsAllowed(boolean petsAllowed) {
+    public void setPetsAllowed(char petsAllowed) {
         this.petsAllowed = petsAllowed;
     }
 
@@ -76,11 +76,11 @@ public class Room {
         return price;
     }
 
-    public boolean isBreakfastIncluded() {
+    public char getBreakfastIncluded() {
         return breakfastIncluded;
     }
 
-    public boolean isPetsAllowed() {
+    public char getPetsAllowed() {
         return petsAllowed;
     }
 

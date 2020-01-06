@@ -30,9 +30,7 @@ public class RoomDAO {
             session = createSessionFactory().openSession();
             tr = session.getTransaction();
             tr.begin();
-
             session.save(room);
-
             tr.commit();
             return room;
         }catch (HibernateException e){
@@ -150,8 +148,8 @@ public class RoomDAO {
             for(Room r : getAllRooms()){
                 if(r.getNumberOfGuests() >= filter.getNumberOfGuests()
                         && r.getPrice() >= filter.getPrice()
-                        && r.isBreakfastIncluded() == filter.isBreakfastIncluded()
-                        && r.isPetsAllowed() == filter.isPetsAllowed()
+                        && r.getBreakfastIncluded() == filter.getBreakfastIncluded()
+                        && r.getPetsAllowed() == filter.getPetsAllowed()
                         && r.getDateAvailableFrom().getTime() >= filter.getDateAvailableFrom().getTime()){
                     result.add(r);
                 }
