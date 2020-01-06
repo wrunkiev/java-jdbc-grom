@@ -1,7 +1,5 @@
 package hibernate.homework4.DAO;
 
-import hibernate.homework4.model.Hotel;
-import hibernate.homework4.model.Room;
 import hibernate.homework4.model.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

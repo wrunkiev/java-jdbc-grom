@@ -3,9 +3,7 @@ package hibernate.homework4.service;
 import hibernate.homework4.DAO.RoomDAO;
 import hibernate.homework4.model.Filter;
 import hibernate.homework4.model.Room;
-
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 public class RoomService {
