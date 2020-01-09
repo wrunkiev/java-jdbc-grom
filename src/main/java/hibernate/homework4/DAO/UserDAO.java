@@ -135,23 +135,7 @@ public class UserDAO{
         return save(user);
     }
 
-    public void login(String userName, String password)throws Exception{
-        if(userName == null || userName.isEmpty()){
-            throw new Exception("Exception in method UserDAO.login. UserName can't be null or empty");
-        }
-
-        if(password == null || password.isEmpty()){
-            throw new Exception("Exception in method UserDAO.login. Password can't be null or empty");
-        }
-
-        User user = getUserByName(userName);
-        if(user == null){
-            throw new Exception("Exception in method UserDAO.login. " +
-                    "User with name: " + userName + " is not defined in DB. You must have register.");
-        }
-    }
-
-    private User getUserByName(String userName)throws Exception{
+    public User getUserByName(String userName)throws Exception{
         if(userName == null || userName.isEmpty()){
             throw new Exception("Exception in method UserDAO.login. UserName can't be null or empty");
         }
